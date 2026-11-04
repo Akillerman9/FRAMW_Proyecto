@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "nombre": "Cerveza en lata",
+    "categoria": "bebida",
+    "unidad": "latas",
+    "stock": 120,
+    "minimo": 200,
+    "compra": {
+      "unidadesPorCaja": 24,
+      "precioCaja": 18
+    },
+    "proveedor": {
+      "nombre": "Distribuciones Begoña",
+      "telefono": "944123456"
+    },
+    "consumoPorTipo": {
+      "monologo": 1,
+      "concierto": 2,
+      "fiesta": 3,
+      "karaoke": 2,
+      "quiz": 1.5,
+      "privado": 2
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Refresco de cola",
+    "categoria": "bebida",
+    "unidad": "botellas",
+    "stock": 80,
+    "minimo": 100,
+    "compra": {
+      "unidadesPorCaja": 6,
+      "precioCaja": 7
+    },
+    "proveedor": {
+      "nombre": "Distribuciones Begoña",
+      "telefono": "944123456"
+    },
+    "consumoPorTipo": {
+      "monologo": 0.5,
+      "concierto": 1,
+      "fiesta": 1.5,
+      "karaoke": 1,
+      "quiz": 0.5,
+      "privado": 1
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Agua mineral",
+    "categoria": "bebida",
+    "unidad": "botellas",
+    "stock": 50,
+    "minimo": 80,
+    "compra": {
+      "unidadesPorCaja": 12,
+      "precioCaja": 4
+    },
+    "proveedor": {
+      "nombre": "Bebidas Euskadi",
+      "telefono": "946654321"
+    },
+    "consumoPorTipo": {
+      "monologo": 0.5,
+      "concierto": 0.5,
+      "fiesta": 0.5,
+      "karaoke": 0.5,
+      "quiz": 0.5,
+      "privado": 0.5
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Pinchos variados",
+    "categoria": "comida",
+    "unidad": "raciones",
+    "stock": 30,
+    "minimo": 50,
+    "compra": {
+      "unidadesPorCaja": 20,
+      "precioCaja": 40
+    },
+    "proveedor": {
+      "nombre": "Catering Donosti",
+      "telefono": "943111222"
+    },
+    "consumoPorTipo": {
+      "monologo": 0,
+      "concierto": 0.5,
+      "fiesta": 1,
+      "karaoke": 0,
+      "quiz": 0.5,
+      "privado": 1.5
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Vasos de plástico",
+    "categoria": "otros",
+    "unidad": "unidades",
+    "stock": 400,
+    "minimo": 500,
+    "compra": {
+      "unidadesPorCaja": 100,
+      "precioCaja": 5
+    },
+    "proveedor": {
+      "nombre": "Suministros Generales",
+      "telefono": "944999888"
+    },
+    "consumoPorTipo": {
+      "monologo": 1,
+      "concierto": 2,
+      "fiesta": 3,
+      "karaoke": 2,
+      "quiz": 1,
+      "privado": 2
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Servilletas",
+    "categoria": "otros",
+    "unidad": "paquetes",
+    "stock": 10,
+    "minimo": 20,
+    "compra": {
+      "unidadesPorCaja": 10,
+      "precioCaja": 8
+    },
+    "proveedor": {
+      "nombre": "Suministros Generales",
+      "telefono": "944999888"
+    },
+    "consumoPorTipo": {
+      "monologo": 0,
+      "concierto": 0.5,
+      "fiesta": 1,
+      "karaoke": 0.5,
+      "quiz": 0,
+      "privado": 1
+    }
+  }
+]
