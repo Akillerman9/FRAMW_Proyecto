@@ -1,0 +1,433 @@
+[
+  {
+    "id": 1,
+    "titulo": "Noche de Monólogos con Ibarra",
+    "descripcion": "Tres comediantes locales se suben al escenario",
+    "tipo": "monologo",
+    "fecha": "2026-11-15",
+    "hora": "21:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 12
+    },
+    "gentePrevista": 80,
+    "organizador": {
+      "nombre": "Asociación Algara",
+      "contacto": "info@algara.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 150,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Ibarra", "cache": 200, "duracionMin": 45 },
+      { "nombre": "Miren Goikoetxea", "cache": 150, "duracionMin": 30 }
+    ],
+    "etiquetas": ["humor", "euskera"],
+    "celebrado": false
+  },
+  {
+    "id": 2,
+    "titulo": "Monólogos en español",
+    "descripcion": "Sesión de stand-up comedy en castellano",
+    "tipo": "monologo",
+    "fecha": "2026-12-05",
+    "hora": "22:00",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 100,
+    "organizador": {
+      "nombre": "Comedia Club",
+      "contacto": "hola@comediac.club"
+    },
+    "alquiler": {
+      "seCobra": false,
+      "importe": 0,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Carlos López", "cache": 100, "duracionMin": 60 }
+    ],
+    "etiquetas": ["humor"],
+    "celebrado": false
+  },
+  {
+    "id": 3,
+    "titulo": "Concierto de Jazz",
+    "descripcion": "Trio de jazz en vivo",
+    "tipo": "concierto",
+    "fecha": "2026-11-22",
+    "hora": "20:30",
+    "entrada": {
+      "esGratis": false,
+      "precio": 15
+    },
+    "gentePrevista": 120,
+    "organizador": {
+      "nombre": "Asociación Algara",
+      "contacto": "info@algara.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 200,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Jazz Trio", "cache": 400, "duracionMin": 90 }
+    ],
+    "etiquetas": ["musica", "jazz"],
+    "celebrado": false
+  },
+  {
+    "id": 4,
+    "titulo": "Rock Nacional",
+    "descripcion": "Banda de rock clásico",
+    "tipo": "concierto",
+    "fecha": "2027-01-10",
+    "hora": "21:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 18
+    },
+    "gentePrevista": 140,
+    "organizador": {
+      "nombre": "Rock On",
+      "contacto": "booking@rockon.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 250,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": true,
+      "motivo": "Enfermedad del vocalista"
+    },
+    "artistas": [
+      { "nombre": "Los Rayos", "cache": 500, "duracionMin": 120 }
+    ],
+    "etiquetas": ["musica", "rock"],
+    "celebrado": false
+  },
+  {
+    "id": 5,
+    "titulo": "Fiesta de Fin de Año",
+    "descripcion": "Celebración de año nuevo con DJ",
+    "tipo": "fiesta",
+    "fecha": "2026-12-31",
+    "hora": "23:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 25
+    },
+    "gentePrevista": 150,
+    "organizador": {
+      "nombre": "Asociación Algara",
+      "contacto": "info@algara.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 300,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "DJ Mikel", "cache": 300, "duracionMin": 240 }
+    ],
+    "etiquetas": ["fiesta", "dj"],
+    "celebrado": false
+  },
+  {
+    "id": 6,
+    "titulo": "Fiesta de Carnaval",
+    "descripcion": "Disfraces y música",
+    "tipo": "fiesta",
+    "fecha": "2027-02-14",
+    "hora": "22:00",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 130,
+    "organizador": {
+      "nombre": "Peña El Tornillo",
+      "contacto": "tornillo@peña.eus"
+    },
+    "alquiler": {
+      "seCobra": false,
+      "importe": 0,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [],
+    "etiquetas": ["fiesta", "disfraces"],
+    "celebrado": false
+  },
+  {
+    "id": 7,
+    "titulo": "Karaoke de los 80",
+    "descripcion": "Noche de karaoke con hits de los 80",
+    "tipo": "karaoke",
+    "fecha": "2026-11-28",
+    "hora": "21:30",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 60,
+    "organizador": {
+      "nombre": "Club Social",
+      "contacto": "social@club.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 100,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [],
+    "etiquetas": ["karaoke", "musica"],
+    "celebrado": false
+  },
+  {
+    "id": 8,
+    "titulo": "Karaoke en euskera",
+    "descripcion": "Canta tus canciones favoritas en euskera",
+    "tipo": "karaoke",
+    "fecha": "2027-01-20",
+    "hora": "20:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 8
+    },
+    "gentePrevista": 50,
+    "organizador": {
+      "nombre": "Euskara Elkartea",
+      "contacto": "euskara@elkartea.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 80,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Animador Iñaki", "cache": 80, "duracionMin": 180 }
+    ],
+    "etiquetas": ["karaoke", "euskera"],
+    "celebrado": false
+  },
+  {
+    "id": 9,
+    "titulo": "Quiz de Cultura General",
+    "descripcion": "Competición de preguntas y respuestas",
+    "tipo": "quiz",
+    "fecha": "2026-11-10",
+    "hora": "19:00",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 40,
+    "organizador": {
+      "nombre": "Club Social",
+      "contacto": "social@club.com"
+    },
+    "alquiler": {
+      "seCobra": false,
+      "importe": 0,
+      "pagado": false
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [],
+    "etiquetas": ["quiz", "cultura"],
+    "celebrado": true
+  },
+  {
+    "id": 10,
+    "titulo": "Quiz Musical",
+    "descripcion": "Adivina canciones y artistas",
+    "tipo": "quiz",
+    "fecha": "2026-12-12",
+    "hora": "20:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 5
+    },
+    "gentePrevista": 70,
+    "organizador": {
+      "nombre": "Music Fans",
+      "contacto": "fans@music.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 60,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Presentador Aitor", "cache": 50, "duracionMin": 120 }
+    ],
+    "etiquetas": ["quiz", "musica"],
+    "celebrado": false
+  },
+  {
+    "id": 11,
+    "titulo": "Boda Privada García",
+    "descripcion": "Celebración de boda",
+    "tipo": "privado",
+    "fecha": "2026-10-15",
+    "hora": "14:00",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 100,
+    "organizador": {
+      "nombre": "Familia García",
+      "contacto": "garcia@correo.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 500,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "Dúo Acústico", "cache": 350, "duracionMin": 180 },
+      { "nombre": "DJ Bodas", "cache": 200, "duracionMin": 240 }
+    ],
+    "etiquetas": ["privado", "boda"],
+    "celebrado": true
+  },
+  {
+    "id": 12,
+    "titulo": "Cumpleaños Privado López",
+    "descripcion": "Fiesta de cumpleaños 50",
+    "tipo": "privado",
+    "fecha": "2026-09-20",
+    "hora": "21:00",
+    "entrada": {
+      "esGratis": true,
+      "precio": 0
+    },
+    "gentePrevista": 60,
+    "organizador": {
+      "nombre": "Familia López",
+      "contacto": "lopez@correo.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 200,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": true,
+      "motivo": "Aplazado por el organizador"
+    },
+    "artistas": [
+      { "nombre": "DJ López", "cache": 150, "duracionMin": 180 }
+    ],
+    "etiquetas": ["privado", "cumpleaños"],
+    "celebrado": false
+  },
+  {
+    "id": 13,
+    "titulo": "Concierto de Música Celta",
+    "descripcion": "Gaitas y tambores",
+    "tipo": "concierto",
+    "fecha": "2026-10-05",
+    "hora": "19:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 10
+    },
+    "gentePrevista": 90,
+    "organizador": {
+      "nombre": "Asociación Cultural",
+      "contacto": "cultura@asoc.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 120,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": true,
+      "motivo": "Lluvia prevista"
+    },
+    "artistas": [
+      { "nombre": "Gaiteros del Norte", "cache": 250, "duracionMin": 90 },
+      { "nombre": "Tambores Vascos", "cache": 180, "duracionMin": 60 }
+    ],
+    "etiquetas": ["musica", "celta"],
+    "celebrado": false
+  },
+  {
+    "id": 14,
+    "titulo": "Fiesta de Verano",
+    "descripcion": "Última fiesta del verano",
+    "tipo": "fiesta",
+    "fecha": "2026-09-01",
+    "hora": "23:00",
+    "entrada": {
+      "esGratis": false,
+      "precio": 15
+    },
+    "gentePrevista": 145,
+    "organizador": {
+      "nombre": "Peña El Tornillo",
+      "contacto": "tornillo@peña.eus"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 200,
+      "pagado": true
+    },
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "artistas": [
+      { "nombre": "DJ Verano", "cache": 280, "duracionMin": 300 }
+    ],
+    "etiquetas": ["fiesta", "verano"],
+    "celebrado": true
+  }
+]
