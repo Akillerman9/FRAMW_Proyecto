@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento } = require('../servicios/eventosServicio');
+const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento, obtenerFiltrados } = require('../servicios/eventosServicio');
 
-router.get('/', (req, res) => {
-  res.json(obtenerTodos());
+router.get('/filtrar', (req, res) => {
+  res.json(obtenerFiltrados(req.query));
 });
 
 router.post('/', (req, res) => {

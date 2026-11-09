@@ -85,10 +85,35 @@ const eliminarEvento = (id) => {
   return eventoEliminado;
 };
 
-module.exports = { obtenerTodos, 
+const obtenerFiltrados = (filtros) => {
+  let eventos = leerDatos();
+  
+  if (filtros.tipo) {
+    eventos = eventos.filter(e => e.tipo === filtros.tipo);
+  }
+  if (filtros.desde) {
+    eventos = eventos.filter(e => e.fecha >= filtros.desde);
+  }
+  if (filtros.hasta) {
+    eventos = eventos.filter(e => e.fecha <= filtros.hasta);
+  }
+  if (filtros.etiqueta) {
+    eventos = eventos.filter(e => e.etiquetas && e.etiquetas.includes(filtros.etiqueta));
+  }
+  if (filtros.cancelado !== undefined) {
+    const estaCancelado = filtros.cancelado === 'true' || filtros.cancelado === true;
+    eventos = eventos.filter(e => e.cancelado && e.cancelado.estaCancelado === estaCancelado);
+  }
+  
+  return eventos;
+};
+
+module.exports = { 
+  obtenerTodos, 
   obtenerPorId, 
   crearEvento,
   actualizarEvento,
   actualizarParcial,
-  eliminarEvento
+  eliminarEvento,
+  obtenerFiltrados
  };
