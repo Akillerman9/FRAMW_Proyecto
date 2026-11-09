@@ -30,4 +30,65 @@ const crearEvento = (nuevoEvento) => {
   return eventoConId;
 };
 
-module.exports = { obtenerTodos, obtenerPorId, crearEvento };
+const actualizarEvento = (id, eventoActualizado) => {
+  const eventos = leerDatos();
+  const indice = eventos.findIndex(e => e.id === id);
+  
+  if (indice === -1) {
+    return { error: 'Evento no encontrado' };
+  }
+  
+  const errores = validarEvento(eventoActualizado);
+  if (errores.length > 0) {
+    return { error: 'Datos inválidos', errores };
+  }
+  
+  eventos[indice] = { ...eventoActualizado, id };
+  escribirDatos(eventos);
+  
+  return eventos[indice];
+};
+
+const actualizarParcial = (id, cambios) => {
+  const eventos = leerDatos();
+  const indice = eventos.findIndex(e => e.id === id);
+  
+  if (indice === -1) {
+    return { error: 'Evento no encontrado' };
+  }
+  
+  const eventoActualizado = { ...eventos[indice], ...cambios };
+  const errores = validarEvento(eventoActualizado);
+  
+  if (errores.length > 0) {
+    return { error: 'Datos inválidos', errores };
+  }
+  
+  eventos[indice] = eventoActualizado;
+  escribirDatos(eventos);
+  
+  return eventoActualizado;
+};
+
+const eliminarEvento = (id) => {
+  const eventos = leerDatos();
+  const indice = eventos.findIndex(e => e.id === id);
+  
+  if (indice === -1) {
+    return { error: 'Evento no encontrado' };
+  }
+  
+  const eventoEliminado = eventos[indice];
+  eventos.splice(indice, 1);
+  escribirDatos(eventos);
+  
+  return eventoEliminado;
+};
+
+module.exports = { obtenerTodos, 
+  obtenerPorId, 
+  crearEvento,
+  actualizarEvento,
+  actualizarParcial,
+  eliminarEvento
+ };
