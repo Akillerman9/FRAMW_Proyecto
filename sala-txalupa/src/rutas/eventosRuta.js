@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearEvento } = require('../servicios/eventosServicio');
+const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento } = require('../servicios/eventosServicio');
 
 router.get('/', (req, res) => {
   res.json(obtenerTodos());
