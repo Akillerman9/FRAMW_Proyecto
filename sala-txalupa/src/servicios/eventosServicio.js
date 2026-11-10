@@ -127,7 +127,6 @@ const cancelarEvento = (id, motivo) => {
 };
 
 
-
 module.exports = { 
   obtenerTodos, 
   obtenerPorId, 

@@ -4,7 +4,7 @@
     "nombre": "Cerveza en lata",
     "categoria": "bebida",
     "unidad": "latas",
-    "stock": 120,
+    "stock": 118,
     "minimo": 200,
     "compra": {
       "unidadesPorCaja": 24,

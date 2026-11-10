@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearProducto, actualizarProducto, actualizarParcial, eliminarProducto, obtenerFiltrados } = require('../servicios/productosServicio');
+const { obtenerTodos, obtenerPorId, crearProducto, actualizarProducto, actualizarParcial, eliminarProducto, obtenerFiltrados, comprarStock } = require('../servicios/productosServicio');
 
 router.get('/', (req, res) => {
   res.json(obtenerTodos());
@@ -39,6 +39,27 @@ router.delete('/:id', (req, res) => {
   const resultado = eliminarProducto(id);
   if (resultado.error) return res.status(404).json(resultado);
   res.json({ mensaje: 'Producto eliminado', producto: resultado });
+});
+
+// NUEVA RUTA: Comprar stock (DEBE IR ANTES DE /:id)
+router.post('/:id/comprar', (req, res) => {
+  const id = Number(req.params.id);
+  const { cantidad } = req.body;
+  
+  if (!cantidad || cantidad <= 0) {
+    return res.status(400).json({ error: 'Cantidad inválida' });
+  }
+  
+  const resultado = comprarStock(id, cantidad);
+  
+  if (resultado.error === 'Producto no encontrado') {
+    return res.status(404).json(resultado);
+  }
+  if (resultado.error === 'Stock insuficiente') {
+    return res.status(400).json(resultado);
+  }
+  
+  res.json(resultado);
 });
 
 router.get('/:id', (req, res) => {

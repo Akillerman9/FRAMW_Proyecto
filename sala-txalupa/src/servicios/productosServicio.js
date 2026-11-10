@@ -98,6 +98,28 @@ const obtenerFiltrados = (filtros) => {
   return productos;
 };
 
+const comprarStock = (id, cantidad) => {
+  const productos = leerDatos();
+  const indice = productos.findIndex(p => p.id === id);
+  
+  if (indice === -1) {
+    return { error: 'Producto no encontrado' };
+  }
+  
+  if (productos[indice].stock < cantidad) {
+    return { error: 'Stock insuficiente', stockActual: productos[indice].stock };
+  }
+  
+  productos[indice].stock -= cantidad;
+  escribirDatos(productos);
+  
+  return { 
+    mensaje: 'Stock actualizado', 
+    producto: productos[indice],
+    stockRestante: productos[indice].stock
+  };
+};
+
 module.exports = { 
   obtenerTodos, 
   obtenerPorId, 
@@ -105,5 +127,6 @@ module.exports = {
   actualizarProducto,
   actualizarParcial,
   eliminarProducto,
-  obtenerFiltrados
+  obtenerFiltrados,
+  comprarStock
 };
