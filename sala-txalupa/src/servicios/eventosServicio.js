@@ -116,4 +116,4 @@ module.exports = {
   actualizarParcial,
   eliminarEvento,
   obtenerFiltrados
- };
+};
