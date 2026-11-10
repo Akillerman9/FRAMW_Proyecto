@@ -108,6 +108,26 @@ const obtenerFiltrados = (filtros) => {
   return eventos;
 };
 
+const cancelarEvento = (id, motivo) => {
+  const eventos = leerDatos();
+  const indice = eventos.findIndex(e => e.id === id);
+  
+  if (indice === -1) {
+    return { error: 'Evento no encontrado' };
+  }
+  
+  if (eventos[indice].cancelado && eventos[indice].cancelado.estaCancelado) {
+    return { error: 'El evento ya está cancelado' };
+  }
+  
+  eventos[indice].cancelado = { estaCancelado: true, motivo: motivo || 'Sin motivo especificado' };
+  escribirDatos(eventos);
+  
+  return eventos[indice];
+};
+
+
+
 module.exports = { 
   obtenerTodos, 
   obtenerPorId, 
@@ -115,5 +135,6 @@ module.exports = {
   actualizarEvento,
   actualizarParcial,
   eliminarEvento,
-  obtenerFiltrados
+  obtenerFiltrados,
+  cancelarEvento
 };

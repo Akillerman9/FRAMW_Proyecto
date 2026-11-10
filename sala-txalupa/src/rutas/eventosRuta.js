@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento, obtenerFiltrados } = require('../servicios/eventosServicio');
+const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento, obtenerFiltrados, cancelarEvento } = require('../servicios/eventosServicio');
 
 router.get('/', (req, res) => {
   res.json(obtenerTodos());
@@ -39,6 +39,21 @@ router.delete('/:id', (req, res) => {
   const resultado = eliminarEvento(id);
   if (resultado.error) return res.status(404).json(resultado);
   res.json({ mensaje: 'Evento eliminado', evento: resultado });
+});
+
+router.post('/:id/cancelar', (req, res) => {
+  const id = Number(req.params.id);
+  const { motivo } = req.body;
+  const resultado = cancelarEvento(id, motivo);
+  
+  if (resultado.error === 'Evento no encontrado') {
+    return res.status(404).json(resultado);
+  }
+  if (resultado.error === 'El evento ya está cancelado') {
+    return res.status(400).json(resultado);
+  }
+  
+  res.json({ mensaje: 'Evento cancelado', evento: resultado });
 });
 
 router.get('/:id', (req, res) => {

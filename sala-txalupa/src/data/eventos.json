@@ -25,10 +25,21 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "Ibarra", "cache": 200, "duracionMin": 45 },
-      { "nombre": "Miren Goikoetxea", "cache": 150, "duracionMin": 30 }
+      {
+        "nombre": "Ibarra",
+        "cache": 200,
+        "duracionMin": 45
+      },
+      {
+        "nombre": "Miren Goikoetxea",
+        "cache": 150,
+        "duracionMin": 30
+      }
     ],
-    "etiquetas": ["humor", "euskera"],
+    "etiquetas": [
+      "humor",
+      "euskera"
+    ],
     "celebrado": false
   },
   {
@@ -57,9 +68,15 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "Carlos López", "cache": 100, "duracionMin": 60 }
+      {
+        "nombre": "Carlos López",
+        "cache": 100,
+        "duracionMin": 60
+      }
     ],
-    "etiquetas": ["humor"],
+    "etiquetas": [
+      "humor"
+    ],
     "celebrado": false
   },
   {
@@ -84,13 +101,20 @@
       "pagado": true
     },
     "cancelado": {
-      "estaCancelado": false,
-      "motivo": null
+      "estaCancelado": true,
+      "motivo": "Prueba de cancelaci�n"
     },
     "artistas": [
-      { "nombre": "Jazz Trio", "cache": 400, "duracionMin": 90 }
+      {
+        "nombre": "Jazz Trio",
+        "cache": 400,
+        "duracionMin": 90
+      }
     ],
-    "etiquetas": ["musica", "jazz"],
+    "etiquetas": [
+      "musica",
+      "jazz"
+    ],
     "celebrado": false
   },
   {
@@ -119,9 +143,16 @@
       "motivo": "Enfermedad del vocalista"
     },
     "artistas": [
-      { "nombre": "Los Rayos", "cache": 500, "duracionMin": 120 }
+      {
+        "nombre": "Los Rayos",
+        "cache": 500,
+        "duracionMin": 120
+      }
     ],
-    "etiquetas": ["musica", "rock"],
+    "etiquetas": [
+      "musica",
+      "rock"
+    ],
     "celebrado": false
   },
   {
@@ -150,9 +181,16 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "DJ Mikel", "cache": 300, "duracionMin": 240 }
+      {
+        "nombre": "DJ Mikel",
+        "cache": 300,
+        "duracionMin": 240
+      }
     ],
-    "etiquetas": ["fiesta", "dj"],
+    "etiquetas": [
+      "fiesta",
+      "dj"
+    ],
     "celebrado": false
   },
   {
@@ -181,7 +219,10 @@
       "motivo": null
     },
     "artistas": [],
-    "etiquetas": ["fiesta", "disfraces"],
+    "etiquetas": [
+      "fiesta",
+      "disfraces"
+    ],
     "celebrado": false
   },
   {
@@ -210,7 +251,10 @@
       "motivo": null
     },
     "artistas": [],
-    "etiquetas": ["karaoke", "musica"],
+    "etiquetas": [
+      "karaoke",
+      "musica"
+    ],
     "celebrado": false
   },
   {
@@ -239,9 +283,16 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "Animador Iñaki", "cache": 80, "duracionMin": 180 }
+      {
+        "nombre": "Animador Iñaki",
+        "cache": 80,
+        "duracionMin": 180
+      }
     ],
-    "etiquetas": ["karaoke", "euskera"],
+    "etiquetas": [
+      "karaoke",
+      "euskera"
+    ],
     "celebrado": false
   },
   {
@@ -270,7 +321,10 @@
       "motivo": null
     },
     "artistas": [],
-    "etiquetas": ["quiz", "cultura"],
+    "etiquetas": [
+      "quiz",
+      "cultura"
+    ],
     "celebrado": true
   },
   {
@@ -299,9 +353,16 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "Presentador Aitor", "cache": 50, "duracionMin": 120 }
+      {
+        "nombre": "Presentador Aitor",
+        "cache": 50,
+        "duracionMin": 120
+      }
     ],
-    "etiquetas": ["quiz", "musica"],
+    "etiquetas": [
+      "quiz",
+      "musica"
+    ],
     "celebrado": false
   },
   {
@@ -330,10 +391,21 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "Dúo Acústico", "cache": 350, "duracionMin": 180 },
-      { "nombre": "DJ Bodas", "cache": 200, "duracionMin": 240 }
+      {
+        "nombre": "Dúo Acústico",
+        "cache": 350,
+        "duracionMin": 180
+      },
+      {
+        "nombre": "DJ Bodas",
+        "cache": 200,
+        "duracionMin": 240
+      }
     ],
-    "etiquetas": ["privado", "boda"],
+    "etiquetas": [
+      "privado",
+      "boda"
+    ],
     "celebrado": true
   },
   {
@@ -362,9 +434,16 @@
       "motivo": "Aplazado por el organizador"
     },
     "artistas": [
-      { "nombre": "DJ López", "cache": 150, "duracionMin": 180 }
+      {
+        "nombre": "DJ López",
+        "cache": 150,
+        "duracionMin": 180
+      }
     ],
-    "etiquetas": ["privado", "cumpleaños"],
+    "etiquetas": [
+      "privado",
+      "cumpleaños"
+    ],
     "celebrado": false
   },
   {
@@ -393,10 +472,21 @@
       "motivo": "Lluvia prevista"
     },
     "artistas": [
-      { "nombre": "Gaiteros del Norte", "cache": 250, "duracionMin": 90 },
-      { "nombre": "Tambores Vascos", "cache": 180, "duracionMin": 60 }
+      {
+        "nombre": "Gaiteros del Norte",
+        "cache": 250,
+        "duracionMin": 90
+      },
+      {
+        "nombre": "Tambores Vascos",
+        "cache": 180,
+        "duracionMin": 60
+      }
     ],
-    "etiquetas": ["musica", "celta"],
+    "etiquetas": [
+      "musica",
+      "celta"
+    ],
     "celebrado": false
   },
   {
@@ -425,9 +515,16 @@
       "motivo": null
     },
     "artistas": [
-      { "nombre": "DJ Verano", "cache": 280, "duracionMin": 300 }
+      {
+        "nombre": "DJ Verano",
+        "cache": 280,
+        "duracionMin": 300
+      }
     ],
-    "etiquetas": ["fiesta", "verano"],
+    "etiquetas": [
+      "fiesta",
+      "verano"
+    ],
     "celebrado": true
   }
 ]
