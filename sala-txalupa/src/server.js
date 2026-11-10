@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { noEncontrado, gestorErrores } = require('./middlewares/errores');
 const eventosRuta = require('./rutas/eventosRuta');
+const productosRuta = require('./rutas/productosRuta');
 
 const app = express();
 const PORT = 3000;
@@ -14,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/eventos', eventosRuta);
+app.use('/api/productos', productosRuta);
 
 app.use(noEncontrado);
 app.use(gestorErrores);
