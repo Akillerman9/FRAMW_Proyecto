@@ -1,25 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const { 
-  obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, 
-  actualizarParcial, eliminarEvento, obtenerFiltrados, cancelarEvento,
-  anadirDatosCalculados, anadirDatosCalculadosLista 
+  obtenerPorId, crearEvento, actualizarEvento, 
+  actualizarParcial, eliminarEvento, cancelarEvento,
+  anadirDatosCalculados, obtenerEventosProcesados 
 } = require('../servicios/eventosServicio');
 
+// La ruta principal ahora procesa todos los filtros
 router.get('/', (req, res) => {
-  const eventos = obtenerTodos();
-  res.json(anadirDatosCalculadosLista(eventos));
-});
-
-router.get('/filtrar', (req, res) => {
-  res.json(obtenerFiltrados(req.query));
+  res.json(obtenerEventosProcesados(req.query));
 });
 
 router.post('/', (req, res) => {
   const resultado = crearEvento(req.body);
-  if (resultado.error) {
-    return res.status(400).json(resultado);
-  }
+  if (resultado.error) return res.status(400).json(resultado);
   res.status(201).json(resultado);
 });
 
@@ -43,30 +37,23 @@ router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   const resultado = eliminarEvento(id);
   if (resultado.error) return res.status(404).json(resultado);
-  res.json({ mensaje: 'Evento eliminado', evento: resultado });
+  // El enunciado pide 204 sin cuerpo para DELETE exitoso
+  res.status(204).send(); 
 });
 
 router.post('/:id/cancelar', (req, res) => {
   const id = Number(req.params.id);
   const { motivo } = req.body;
   const resultado = cancelarEvento(id, motivo);
-  
-  if (resultado.error === 'Evento no encontrado') {
-    return res.status(404).json(resultado);
-  }
-  if (resultado.error === 'El evento ya está cancelado') {
-    return res.status(400).json(resultado);
-  }
-  
+  if (resultado.error === 'Evento no encontrado') return res.status(404).json(resultado);
+  if (resultado.error === 'El evento ya está cancelado') return res.status(409).json(resultado); // 409 conflicto
   res.json({ mensaje: 'Evento cancelado', evento: resultado });
 });
 
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   const evento = obtenerPorId(id);
-  if (!evento) {
-    return res.status(404).json({ error: 'Evento no encontrado' });
-  }
+  if (!evento) return res.status(404).json({ error: 'Evento no encontrado' });
   res.json(anadirDatosCalculados(evento));
 });
 
