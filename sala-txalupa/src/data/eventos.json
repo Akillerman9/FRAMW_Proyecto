@@ -526,5 +526,41 @@
       "verano"
     ],
     "celebrado": true
+  },
+  {
+    "titulo": "Test",
+    "descripcion": "Test",
+    "tipo": "concierto",
+    "fecha": "2026-12-01",
+    "hora": "20:00",
+    "gentePrevista": 100,
+    "entrada": {
+      "esGratis": false,
+      "precio": 15
+    },
+    "organizador": {
+      "nombre": "Test",
+      "contacto": "test@test.com"
+    },
+    "alquiler": {
+      "seCobra": true,
+      "importe": 100,
+      "pagado": false
+    },
+    "artistas": [
+      {
+        "nombre": "Artista 1",
+        "cache": 200,
+        "duracionMin": 60
+      }
+    ],
+    "etiquetas": [
+      "musica"
+    ],
+    "cancelado": {
+      "estaCancelado": false,
+      "motivo": null
+    },
+    "id": 15
   }
 ]

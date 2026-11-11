@@ -1,9 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearPedido, actualizarPedido, actualizarParcial, eliminarPedido } = require('../servicios/pedidosServicio');
+const { 
+  obtenerTodos, 
+  obtenerPorId, 
+  crearPedido,
+  crearPedidoAutomatico,
+  recibirPedido,
+  actualizarPedido,
+  actualizarParcial,
+  eliminarPedido
+} = require('../servicios/pedidosServicio');
 
 router.get('/', (req, res) => {
-  res.json(obtenerTodos());
+  res.json(obtenerTodos(req.query));
+});
+
+router.post('/automatico', (req, res) => {
+  const resultado = crearPedidoAutomatico();
+  if (resultado.error) {
+    return res.status(409).json(resultado);
+  }
+  res.status(201).json(resultado);
 });
 
 router.post('/', (req, res) => {
@@ -30,11 +47,20 @@ router.patch('/:id', (req, res) => {
   res.json(resultado);
 });
 
+router.patch('/:id/recibir', (req, res) => {
+  const id = Number(req.params.id);
+  const resultado = recibirPedido(id);
+  if (resultado.error === 'Pedido no encontrado') return res.status(404).json(resultado);
+  if (resultado.error === 'El pedido ya está recibido') return res.status(409).json(resultado);
+  res.json(resultado);
+});
+
 router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   const resultado = eliminarPedido(id);
-  if (resultado.error) return res.status(404).json(resultado);
-  res.json({ mensaje: 'Pedido eliminado', pedido: resultado });
+  if (resultado.error === 'Pedido no encontrado') return res.status(404).json(resultado);
+  if (resultado.error === 'No se puede eliminar un pedido pendiente') return res.status(409).json(resultado);
+  res.status(204).send();
 });
 
 router.get('/:id', (req, res) => {

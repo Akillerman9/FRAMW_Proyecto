@@ -1,16 +1,16 @@
 @baseUrl = http://localhost:3000/api
 
 ### ==========================================
-### EVENTOS
+### 1. EVENTOS - CRUD BÁSICO
 ### ==========================================
 
-# Obtener todos los eventos
+# 1. Obtener todos los eventos
 GET {{baseUrl}}/eventos
 
-# Obtener evento por ID
+# 2. Obtener evento por ID
 GET {{baseUrl}}/eventos/1
 
-# Crear evento
+# 3. Crear evento
 POST {{baseUrl}}/eventos
 Content-Type: application/json
 
@@ -21,7 +21,6 @@ Content-Type: application/json
   "fecha": "2026-12-01",
   "hora": "20:00",
   "gentePrevista": 100,
-  "celebrado": false,
   "entrada": { "esGratis": false, "precio": 15 },
   "organizador": { "nombre": "Test", "contacto": "test@test.com" },
   "alquiler": { "seCobra": true, "importe": 100, "pagado": false },
@@ -30,7 +29,7 @@ Content-Type: application/json
   "cancelado": { "estaCancelado": false, "motivo": null }
 }
 
-# Actualizar evento completo (PUT)
+# 4. Actualizar evento completo (PUT)
 PUT {{baseUrl}}/eventos/1
 Content-Type: application/json
 
@@ -41,7 +40,6 @@ Content-Type: application/json
   "fecha": "2026-12-01",
   "hora": "21:00",
   "gentePrevista": 150,
-  "celebrado": false,
   "entrada": { "esGratis": false, "precio": 20 },
   "organizador": { "nombre": "Test", "contacto": "test@test.com" },
   "alquiler": { "seCobra": true, "importe": 100, "pagado": false },
@@ -50,7 +48,7 @@ Content-Type: application/json
   "cancelado": { "estaCancelado": false, "motivo": null }
 }
 
-# Actualizar parcialmente (PATCH)
+# 5. Actualizar parcialmente (PATCH)
 PATCH {{baseUrl}}/eventos/1
 Content-Type: application/json
 
@@ -58,31 +56,99 @@ Content-Type: application/json
   "titulo": "Título modificado con PATCH"
 }
 
-# Eliminar evento
-DELETE {{baseUrl}}/eventos/1
+# 6. Eliminar evento
+DELETE {{baseUrl}}/eventos/99
 
-# Filtrar eventos
-GET {{baseUrl}}/eventos/filtrar?tipo=concierto
+### ==========================================
+### 2. EVENTOS - FILTROS AVANZADOS, ORDEN Y PAGINACIÓN
+### ==========================================
 
-# Cancelar evento
-POST {{baseUrl}}/eventos/1/cancelar
+# 7. Filtrar por tipo
+GET {{baseUrl}}/eventos?tipo=concierto
+
+# 8. Filtrar por rango de precio
+GET {{baseUrl}}/eventos?precioMin=10&precioMax=30
+
+# 9. Filtrar eventos gratis
+GET {{baseUrl}}/eventos?gratis=true
+
+# 10. Buscar por texto (título o descripción)
+GET {{baseUrl}}/eventos?texto=jazz
+
+# 11. Filtrar por etiqueta
+GET {{baseUrl}}/eventos?etiqueta=rock
+
+# 12. Filtrar por fechas
+GET {{baseUrl}}/eventos?desde=2026-11-01&hasta=2026-12-31
+
+# 13. Filtrar por organizador (contiene texto)
+GET {{baseUrl}}/eventos?organizador=algara
+
+# 14. Filtrar por artista (contiene texto)
+GET {{baseUrl}}/eventos?artista=ibarra
+
+# 15. Filtrar eventos cancelados
+GET {{baseUrl}}/eventos?cancelado=true
+
+# 16. Filtrar con alquiler pendiente
+GET {{baseUrl}}/eventos?alquilerPendiente=true
+
+# 17. Filtrar por mínimo de camareros
+GET {{baseUrl}}/eventos?minCamareros=3
+
+# 18. Ordenar por balance descendente
+GET {{baseUrl}}/eventos?orden=balance&dir=desc
+
+# 19. Paginación (página 2, límite 5)
+GET {{baseUrl}}/eventos?pagina=2&limite=5
+
+# 20. Proyección de campos (solo título y fecha)
+GET {{baseUrl}}/eventos?campos=titulo,fecha
+
+### ==========================================
+### 3. EVENTOS - INFORMES Y ACCIONES
+### ==========================================
+
+# 21. Resumen de eventos
+GET {{baseUrl}}/eventos/resumen
+
+# 22. Deudas de organizadores
+GET {{baseUrl}}/eventos/deudas
+
+# 23. Listado de actuaciones (ordenado por caché)
+GET {{baseUrl}}/eventos/actuaciones
+
+# 24. Calendario de un mes
+GET {{baseUrl}}/eventos/calendario?mes=2026-11
+
+# 25. Preguntas de estado
+GET {{baseUrl}}/eventos/preguntas
+
+# 26. Cancelar evento (¡OJO: Es PATCH, no POST!)
+PATCH {{baseUrl}}/eventos/1/cancelar
 Content-Type: application/json
 
 {
   "motivo": "Cancelado por pruebas"
 }
 
+# 27. Pagar alquiler de un evento
+PATCH {{baseUrl}}/eventos/1/pagar-alquiler
+
+# 28. Celebrar un evento
+PATCH {{baseUrl}}/eventos/1/celebrar
+
 ### ==========================================
-### PRODUCTOS
+### 4. PRODUCTOS - CRUD Y FILTROS
 ### ==========================================
 
-# Obtener todos los productos
+# 29. Obtener todos los productos
 GET {{baseUrl}}/productos
 
-# Obtener producto por ID
+# 30. Obtener producto por ID
 GET {{baseUrl}}/productos/1
 
-# Crear producto
+# 31. Crear producto
 POST {{baseUrl}}/productos
 Content-Type: application/json
 
@@ -97,7 +163,7 @@ Content-Type: application/json
   "consumoPorTipo": { "monologo": 1, "concierto": 2, "fiesta": 3, "karaoke": 1, "quiz": 1, "privado": 1 }
 }
 
-# Actualizar producto completo (PUT)
+# 32. Actualizar producto completo (PUT)
 PUT {{baseUrl}}/productos/1
 Content-Type: application/json
 
@@ -112,7 +178,7 @@ Content-Type: application/json
   "consumoPorTipo": { "monologo": 1, "concierto": 2, "fiesta": 3, "karaoke": 1, "quiz": 1, "privado": 1 }
 }
 
-# Actualizar parcialmente (PATCH)
+# 33. Actualizar parcialmente (PATCH)
 PATCH {{baseUrl}}/productos/1
 Content-Type: application/json
 
@@ -120,13 +186,16 @@ Content-Type: application/json
   "stock": 200
 }
 
-# Eliminar producto
-DELETE {{baseUrl}}/productos/1
+# 34. Eliminar producto
+DELETE {{baseUrl}}/productos/99
 
-# Filtrar productos
+# 35. Filtrar productos por categoría
 GET {{baseUrl}}/productos/filtrar?categoria=bebida
 
-# Comprar stock
+# 36. Filtrar productos con stock bajo
+GET {{baseUrl}}/productos/filtrar?stockBajo=true
+
+# 37. Comprar stock (restar)
 POST {{baseUrl}}/productos/1/comprar
 Content-Type: application/json
 
@@ -135,46 +204,65 @@ Content-Type: application/json
 }
 
 ### ==========================================
-### PEDIDOS
+### 5. PRODUCTOS - INFORMES DE ALMACÉN
 ### ==========================================
 
-# Obtener todos los pedidos
+# 38. Valor total del almacén (por categoría)
+GET {{baseUrl}}/productos/valor
+
+# 39. Previsión de compra global
+GET {{baseUrl}}/productos/prevision
+
+# 40. Necesidades de un evento concreto
+GET {{baseUrl}}/productos/necesidades/1
+
+### ==========================================
+### 6. PEDIDOS - CRUD Y ACCIONES
+### ==========================================
+
+# 41. Obtener todos los pedidos
 GET {{baseUrl}}/pedidos
 
-# Obtener pedido por ID
+# 42. Obtener solo pedidos pendientes
+GET {{baseUrl}}/pedidos?pendiente=true
+
+# 43. Obtener pedido por ID
 GET {{baseUrl}}/pedidos/1
 
-# Crear pedido
+# 44. Crear pedido (¡OJO: Estructura con 'lineas' y 'cajas'!)
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
 {
-  "eventoId": 1,
-  "productos": [
-    { "productoId": 1, "cantidad": 10 }
-  ],
-  "estado": "pendiente"
+  "lineas": [
+    { "productoId": 1, "cajas": 5 },
+    { "productoId": 2, "cajas": 3 }
+  ]
 }
 
-# Actualizar pedido (PUT)
+# 45. Crear pedido automático (basado en previsión)
+POST {{baseUrl}}/pedidos/automatico
+
+# 46. Actualizar pedido (PUT)
 PUT {{baseUrl}}/pedidos/1
 Content-Type: application/json
 
 {
-  "eventoId": 1,
-  "productos": [
-    { "productoId": 1, "cantidad": 20 }
-  ],
-  "estado": "entregado"
+  "lineas": [
+    { "productoId": 1, "cajas": 10 }
+  ]
 }
 
-# Actualizar parcialmente (PATCH)
+# 47. Actualizar parcialmente (PATCH)
 PATCH {{baseUrl}}/pedidos/1
 Content-Type: application/json
 
 {
-  "estado": "cancelado"
+  "estado": "recibido"
 }
 
-# Eliminar pedido
-DELETE {{baseUrl}}/pedidos/1
+# 48. Recibir un pedido (suma stock al almacén)
+PATCH {{baseUrl}}/pedidos/1/recibir
+
+# 49. Eliminar pedido
+DELETE {{baseUrl}}/pedidos/99

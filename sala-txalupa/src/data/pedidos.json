@@ -6,8 +6,8 @@
       { "productoId": 1, "cajas": 5 },
       { "productoId": 3, "cajas": 2 }
     ],
-    "importeTotal": 98,
-    "recibido": true
+    "estado": "recibido",
+    "importe": 98
   },
   {
     "id": 2,
@@ -16,7 +16,7 @@
       { "productoId": 4, "cajas": 3 },
       { "productoId": 5, "cajas": 2 }
     ],
-    "importeTotal": 130,
-    "recibido": false
+    "estado": "pendiente",
+    "importe": 130
   }
 ]
