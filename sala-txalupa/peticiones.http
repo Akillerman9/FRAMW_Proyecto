@@ -1,0 +1,180 @@
+@baseUrl = http://localhost:3000/api
+
+### ==========================================
+### EVENTOS
+### ==========================================
+
+# Obtener todos los eventos
+GET {{baseUrl}}/eventos
+
+# Obtener evento por ID
+GET {{baseUrl}}/eventos/1
+
+# Crear evento
+POST {{baseUrl}}/eventos
+Content-Type: application/json
+
+{
+  "titulo": "Nuevo Concierto",
+  "descripcion": "Descripción del concierto",
+  "tipo": "concierto",
+  "fecha": "2026-12-01",
+  "hora": "20:00",
+  "gentePrevista": 100,
+  "celebrado": false,
+  "entrada": { "esGratis": false, "precio": 15 },
+  "organizador": { "nombre": "Test", "contacto": "test@test.com" },
+  "alquiler": { "seCobra": true, "importe": 100, "pagado": false },
+  "artistas": [{ "nombre": "Artista 1", "cache": 200, "duracionMin": 60 }],
+  "etiquetas": ["musica", "rock"],
+  "cancelado": { "estaCancelado": false, "motivo": null }
+}
+
+# Actualizar evento completo (PUT)
+PUT {{baseUrl}}/eventos/1
+Content-Type: application/json
+
+{
+  "titulo": "Concierto Actualizado",
+  "descripcion": "Nueva descripción",
+  "tipo": "concierto",
+  "fecha": "2026-12-01",
+  "hora": "21:00",
+  "gentePrevista": 150,
+  "celebrado": false,
+  "entrada": { "esGratis": false, "precio": 20 },
+  "organizador": { "nombre": "Test", "contacto": "test@test.com" },
+  "alquiler": { "seCobra": true, "importe": 100, "pagado": false },
+  "artistas": [{ "nombre": "Artista 1", "cache": 200, "duracionMin": 60 }],
+  "etiquetas": ["musica"],
+  "cancelado": { "estaCancelado": false, "motivo": null }
+}
+
+# Actualizar parcialmente (PATCH)
+PATCH {{baseUrl}}/eventos/1
+Content-Type: application/json
+
+{
+  "titulo": "Título modificado con PATCH"
+}
+
+# Eliminar evento
+DELETE {{baseUrl}}/eventos/1
+
+# Filtrar eventos
+GET {{baseUrl}}/eventos/filtrar?tipo=concierto
+
+# Cancelar evento
+POST {{baseUrl}}/eventos/1/cancelar
+Content-Type: application/json
+
+{
+  "motivo": "Cancelado por pruebas"
+}
+
+### ==========================================
+### PRODUCTOS
+### ==========================================
+
+# Obtener todos los productos
+GET {{baseUrl}}/productos
+
+# Obtener producto por ID
+GET {{baseUrl}}/productos/1
+
+# Crear producto
+POST {{baseUrl}}/productos
+Content-Type: application/json
+
+{
+  "nombre": "Producto Test",
+  "categoria": "bebida",
+  "unidad": "unidades",
+  "stock": 50,
+  "minimo": 10,
+  "compra": { "unidadesPorCaja": 12, "precioCaja": 20 },
+  "proveedor": { "nombre": "Proveedor Test", "telefono": "123456789" },
+  "consumoPorTipo": { "monologo": 1, "concierto": 2, "fiesta": 3, "karaoke": 1, "quiz": 1, "privado": 1 }
+}
+
+# Actualizar producto completo (PUT)
+PUT {{baseUrl}}/productos/1
+Content-Type: application/json
+
+{
+  "nombre": "Producto Actualizado",
+  "categoria": "bebida",
+  "unidad": "unidades",
+  "stock": 100,
+  "minimo": 20,
+  "compra": { "unidadesPorCaja": 12, "precioCaja": 20 },
+  "proveedor": { "nombre": "Proveedor Test", "telefono": "123456789" },
+  "consumoPorTipo": { "monologo": 1, "concierto": 2, "fiesta": 3, "karaoke": 1, "quiz": 1, "privado": 1 }
+}
+
+# Actualizar parcialmente (PATCH)
+PATCH {{baseUrl}}/productos/1
+Content-Type: application/json
+
+{
+  "stock": 200
+}
+
+# Eliminar producto
+DELETE {{baseUrl}}/productos/1
+
+# Filtrar productos
+GET {{baseUrl}}/productos/filtrar?categoria=bebida
+
+# Comprar stock
+POST {{baseUrl}}/productos/1/comprar
+Content-Type: application/json
+
+{
+  "cantidad": 5
+}
+
+### ==========================================
+### PEDIDOS
+### ==========================================
+
+# Obtener todos los pedidos
+GET {{baseUrl}}/pedidos
+
+# Obtener pedido por ID
+GET {{baseUrl}}/pedidos/1
+
+# Crear pedido
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "eventoId": 1,
+  "productos": [
+    { "productoId": 1, "cantidad": 10 }
+  ],
+  "estado": "pendiente"
+}
+
+# Actualizar pedido (PUT)
+PUT {{baseUrl}}/pedidos/1
+Content-Type: application/json
+
+{
+  "eventoId": 1,
+  "productos": [
+    { "productoId": 1, "cantidad": 20 }
+  ],
+  "estado": "entregado"
+}
+
+# Actualizar parcialmente (PATCH)
+PATCH {{baseUrl}}/pedidos/1
+Content-Type: application/json
+
+{
+  "estado": "cancelado"
+}
+
+# Eliminar pedido
+DELETE {{baseUrl}}/pedidos/1
