@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearProducto, actualizarProducto, actualizarParcial, eliminarProducto, obtenerFiltrados, comprarStock } = require('../servicios/productosServicio');
+const { 
+  obtenerTodos, obtenerPorId, crearProducto, actualizarProducto, 
+  actualizarParcial, eliminarProducto, obtenerFiltrados, comprarStock,
+  obtenerValorAlmacen, obtenerPrevision, obtenerNecesidadesEvento
+} = require('../servicios/productosServicio');
 
 router.get('/', (req, res) => {
   res.json(obtenerTodos());
@@ -8,6 +12,24 @@ router.get('/', (req, res) => {
 
 router.get('/filtrar', (req, res) => {
   res.json(obtenerFiltrados(req.query));
+});
+
+// --- INFORMES DE ALMACÉN (Van antes de /:id) ---
+router.get('/valor', (req, res) => {
+  res.json(obtenerValorAlmacen());
+});
+
+router.get('/prevision', (req, res) => {
+  res.json(obtenerPrevision());
+});
+
+router.get('/necesidades/:eventoId', (req, res) => {
+  const eventoId = Number(req.params.eventoId);
+  const resultado = obtenerNecesidadesEvento(eventoId);
+  if (resultado.error) {
+    return res.status(404).json(resultado);
+  }
+  res.json(resultado);
 });
 
 router.post('/', (req, res) => {
@@ -38,10 +60,9 @@ router.delete('/:id', (req, res) => {
   const id = Number(req.params.id);
   const resultado = eliminarProducto(id);
   if (resultado.error) return res.status(404).json(resultado);
-  res.json({ mensaje: 'Producto eliminado', producto: resultado });
+  res.status(204).send();
 });
 
-// NUEVA RUTA: Comprar stock (DEBE IR ANTES DE /:id)
 router.post('/:id/comprar', (req, res) => {
   const id = Number(req.params.id);
   const { cantidad } = req.body;
