@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, actualizarParcial, eliminarEvento, obtenerFiltrados, cancelarEvento } = require('../servicios/eventosServicio');
+const { 
+  obtenerTodos, obtenerPorId, crearEvento, actualizarEvento, 
+  actualizarParcial, eliminarEvento, obtenerFiltrados, cancelarEvento,
+  anadirDatosCalculados, anadirDatosCalculadosLista 
+} = require('../servicios/eventosServicio');
 
 router.get('/', (req, res) => {
-  res.json(obtenerTodos());
+  const eventos = obtenerTodos();
+  res.json(anadirDatosCalculadosLista(eventos));
 });
 
 router.get('/filtrar', (req, res) => {
@@ -62,7 +67,7 @@ router.get('/:id', (req, res) => {
   if (!evento) {
     return res.status(404).json({ error: 'Evento no encontrado' });
   }
-  res.json(evento);
+  res.json(anadirDatosCalculados(evento));
 });
 
 module.exports = router;

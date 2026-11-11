@@ -1,5 +1,3 @@
-// Reglas de negocio y configuración de la sala
-
 const NOMBRE_SALA = 'Sala Txalupa';
 const AFORO = 150;
 const PERSONAS_POR_CAMARERO = 35;

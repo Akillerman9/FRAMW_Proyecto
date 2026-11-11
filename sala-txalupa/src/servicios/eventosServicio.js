@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { validarEvento } = require('./validar');
+const { PERSONAS_POR_CAMARERO, MINIMO_CAMAREROS, COSTE_CAMARERO } = require('../config');
 
 const rutaDatos = path.join(__dirname, '../data/eventos.json');
 
@@ -12,6 +13,46 @@ const obtenerTodos = () => leerDatos();
 const obtenerPorId = (id) => {
   const eventos = leerDatos();
   return eventos.find(evento => evento.id === id);
+};
+
+const calcularCamareros = (evento) => {
+  if (evento.cancelado && evento.cancelado.estaCancelado) return 0;
+  const base = Math.ceil(evento.gentePrevista / PERSONAS_POR_CAMARERO);
+  const conMinimo = Math.max(base, MINIMO_CAMAREROS);
+  const extraFiesta = evento.tipo === 'fiesta' ? 1 : 0;
+  return conMinimo + extraFiesta;
+};
+
+const calcularCostePersonal = (evento) => {
+  return calcularCamareros(evento) * COSTE_CAMARERO;
+};
+
+const calcularCosteArtistas = (evento) => {
+  if (!evento.artistas || evento.artistas.length === 0) return 0;
+  return evento.artistas.reduce((suma, a) => suma + a.cache, 0);
+};
+
+const calcularBalance = (evento) => {
+  if (evento.cancelado && evento.cancelado.estaCancelado) return 0;
+  const ingresosEntradas = evento.entrada.esGratis ? 0 : evento.entrada.precio * evento.gentePrevista;
+  const ingresosAlquiler = evento.alquiler.seCobra ? evento.alquiler.importe : 0;
+  const ingresos = ingresosEntradas + ingresosAlquiler;
+  const gastos = calcularCostePersonal(evento) + calcularCosteArtistas(evento);
+  return ingresos - gastos;
+};
+
+const anadirDatosCalculados = (evento) => {
+  return {
+    ...evento,
+    camarerosNecesarios: calcularCamareros(evento),
+    costePersonal: calcularCostePersonal(evento),
+    costeArtistas: calcularCosteArtistas(evento),
+    balancePrevisto: calcularBalance(evento)
+  };
+};
+
+const anadirDatosCalculadosLista = (eventos) => {
+  return eventos.map(e => anadirDatosCalculados(e));
 };
 
 const crearEvento = (nuevoEvento) => {
@@ -27,7 +68,7 @@ const crearEvento = (nuevoEvento) => {
   eventos.push(eventoConId);
   escribirDatos(eventos);
   
-  return eventoConId;
+  return anadirDatosCalculados(eventoConId);
 };
 
 const actualizarEvento = (id, eventoActualizado) => {
@@ -46,7 +87,7 @@ const actualizarEvento = (id, eventoActualizado) => {
   eventos[indice] = { ...eventoActualizado, id };
   escribirDatos(eventos);
   
-  return eventos[indice];
+  return anadirDatosCalculados(eventos[indice]);
 };
 
 const actualizarParcial = (id, cambios) => {
@@ -67,7 +108,7 @@ const actualizarParcial = (id, cambios) => {
   eventos[indice] = eventoActualizado;
   escribirDatos(eventos);
   
-  return eventoActualizado;
+  return anadirDatosCalculados(eventoActualizado);
 };
 
 const eliminarEvento = (id) => {
@@ -82,7 +123,7 @@ const eliminarEvento = (id) => {
   eventos.splice(indice, 1);
   escribirDatos(eventos);
   
-  return eventoEliminado;
+  return anadirDatosCalculados(eventoEliminado);
 };
 
 const obtenerFiltrados = (filtros) => {
@@ -105,7 +146,7 @@ const obtenerFiltrados = (filtros) => {
     eventos = eventos.filter(e => e.cancelado && e.cancelado.estaCancelado === estaCancelado);
   }
   
-  return eventos;
+  return anadirDatosCalculadosLista(eventos);
 };
 
 const cancelarEvento = (id, motivo) => {
@@ -123,9 +164,8 @@ const cancelarEvento = (id, motivo) => {
   eventos[indice].cancelado = { estaCancelado: true, motivo: motivo || 'Sin motivo especificado' };
   escribirDatos(eventos);
   
-  return eventos[indice];
+  return anadirDatosCalculados(eventos[indice]);
 };
-
 
 module.exports = { 
   obtenerTodos, 
@@ -135,5 +175,7 @@ module.exports = {
   actualizarParcial,
   eliminarEvento,
   obtenerFiltrados,
-  cancelarEvento
+  cancelarEvento,
+  anadirDatosCalculados,
+  anadirDatosCalculadosLista
 };
