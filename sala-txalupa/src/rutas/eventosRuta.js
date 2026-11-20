@@ -92,7 +92,7 @@ router.patch('/:id/celebrar', (req, res) => {
   res.json(resultado);
 });
 
-// --- DETALLE POR ID (Va al final) ---
+// DETALLE POR ID
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   const evento = obtenerPorId(id);
