@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/eventos', eventosRuta);
 app.use('/api/productos', productosRuta);
-app.use('/api/pedidos', pedidosRuta); // <--- ESTA LÍNEA FALTABA
+app.use('/api/pedidos', pedidosRuta);
 
 app.use(noEncontrado);
 app.use(gestorErrores);

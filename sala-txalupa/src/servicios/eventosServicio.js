@@ -273,7 +273,7 @@ const obtenerCalendario = (mes) => {
 const obtenerPreguntas = () => {
   const eventos = leerDatos();
   const hayAlquilerSinCobrar = eventos.some(e => e.alquiler && e.alquiler.seCobra && !e.alquiler.pagado);
-  const almacenOK = true; // Esto se calculará con la lógica de almacén más adelante
+  const almacenOK = true;
   const todosConMasDeUnaActuacion = eventos
     .filter(e => e.artistas && e.artistas.length > 0)
     .every(e => e.artistas.length > 1);
