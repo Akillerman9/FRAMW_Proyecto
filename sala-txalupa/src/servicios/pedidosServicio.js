@@ -88,7 +88,7 @@ const crearPedidoAutomatico = () => {
   const productos = leerProductos();
   const eventos = require('./eventosServicio').obtenerTodos();
   
-  // Calcular consumo previsto para todos los eventos no cancelados
+  // Calcular consumo previsto para eventos no cancelados
   const consumoPrevisto = {};
   
   eventos.filter(e => !e.cancelado || !e.cancelado.estaCancelado).forEach(e => {
@@ -148,7 +148,6 @@ const recibirPedido = (id) => {
   
   escribirProductos(productos);
   
-  // Marcar pedido como recibido
   pedidos[indice].estado = 'recibido';
   escribirDatos(pedidos);
   

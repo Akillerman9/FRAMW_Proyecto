@@ -15,7 +15,6 @@ const obtenerPorId = (id) => {
   return eventos.find(evento => evento.id === id);
 };
 
-// --- CÁLCULOS ---
 const calcularCamareros = (evento) => {
   if (evento.cancelado && evento.cancelado.estaCancelado) return 0;
   const base = Math.ceil((evento.gentePrevista || 0) / PERSONAS_POR_CAMARERO);
@@ -60,7 +59,6 @@ const anadirDatosCalculados = (evento) => ({
 
 const anadirDatosCalculadosLista = (eventos) => eventos.map(e => anadirDatosCalculados(e));
 
-// --- FILTROS, ORDEN, PAGINACIÓN Y PROYECCIÓN ---
 const obtenerEventosProcesados = (query) => {
   // 1. Cargar y calcular
   let eventos = anadirDatosCalculadosLista(leerDatos());
@@ -123,7 +121,6 @@ const obtenerEventosProcesados = (query) => {
     eventos = eventos.filter(e => e.camarerosNecesarios >= minCam);
   }
 
-  // 3. Ordenar
   if (query.orden) {
     const dir = query.dir === 'desc' ? -1 : 1;
     eventos = [...eventos].sort((a, b) => {
@@ -139,14 +136,12 @@ const obtenerEventosProcesados = (query) => {
     });
   }
 
-  // Paginar
   const pagina = Number(query.pagina) || 1;
   const limite = Number(query.limite) || 10;
   const total = eventos.length;
   const inicio = (pagina - 1) * limite;
   const datosPaginados = eventos.slice(inicio, inicio + limite);
 
-  // 5. Proyectar (si viene query.campos)
   let datosFinales = datosPaginados;
   if (query.campos) {
     const camposLista = query.campos.split(',').map(c => c.trim());
@@ -162,7 +157,6 @@ const obtenerEventosProcesados = (query) => {
   return { total, pagina, limite, datos: datosFinales };
 };
 
-// --- CRUD BÁSICO ---
 const crearEvento = (nuevoEvento) => {
   const errores = validarEvento(nuevoEvento);
   if (errores.length > 0) return { error: 'Datos inválidos', errores };
@@ -228,7 +222,6 @@ const cancelarEvento = (id, motivo) => {
   return anadirDatosCalculados(eventos[indice]);
 };
 
-// --- INFORMES ---
 const obtenerResumen = () => {
   const eventos = leerDatos();
   const eventosConCalculos = anadirDatosCalculadosLista(eventos);
@@ -288,7 +281,6 @@ const obtenerPreguntas = () => {
   return { hayAlquilerSinCobrar, almacenOK, todosConMasDeUnaActuacion };
 };
 
-// --- ACCIONES ---
 const pagarAlquiler = (id) => {
   const eventos = leerDatos();
   const indice = eventos.findIndex(e => e.id === id);
@@ -312,8 +304,7 @@ const celebrarEvento = (id) => {
     return { error: 'El evento ya está celebrado' };
   }
 
-  // Aquí iría la lógica para descontar del almacén. 
-  // Por ahora marcamos como celebrado para no romper la API si falta la lógica de stock.
+
   eventos[indice].celebrado = true;
   escribirDatos(eventos);
   return anadirDatosCalculados(eventos[indice]);

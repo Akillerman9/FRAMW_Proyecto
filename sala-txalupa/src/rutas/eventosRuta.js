@@ -8,7 +8,7 @@ const {
   pagarAlquiler, celebrarEvento
 } = require('../servicios/eventosServicio');
 
-// --- INFORMES (Van antes de /:id) ---
+// INFORMES
 router.get('/resumen', (req, res) => {
   res.json(obtenerResumen());
 });

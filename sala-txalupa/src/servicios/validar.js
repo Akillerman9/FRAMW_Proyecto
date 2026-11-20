@@ -4,7 +4,7 @@ const { AFORO, TIPOS } = require('../config');
 const validarEvento = (evento) => {
   const errores = [];
 
-  // Campos obligatorios básicos
+  // Campos obligatorios a rellenar
   if (!evento.titulo || typeof evento.titulo !== 'string') {
     errores.push('El título es obligatorio y debe ser texto');
   }
@@ -59,7 +59,6 @@ const validarEvento = (evento) => {
     }
   }
 
-  // Artistas (array de objetos)
   if (evento.artistas && !Array.isArray(evento.artistas)) {
     errores.push('Los artistas deben ser un array');
   } else if (evento.artistas) {
@@ -69,12 +68,11 @@ const validarEvento = (evento) => {
     errores.push(...erroresArtistas);
   }
 
-  // Etiquetas
   if (evento.etiquetas && !Array.isArray(evento.etiquetas)) {
     errores.push('Las etiquetas deben ser un array');
   }
 
-  // Cancelado
+  // Eventos cancelados
   if (evento.cancelado) {
     if (evento.cancelado.estaCancelado && !evento.cancelado.motivo) {
       errores.push('Si el evento está cancelado, debe haber un motivo');
@@ -102,7 +100,6 @@ const validarArtista = (artista, indice) => {
   return errores;
 };
 
-// Validar un producto completo
 const validarProducto = (producto) => {
   const errores = [];
 
@@ -123,7 +120,6 @@ const validarProducto = (producto) => {
     errores.push('El mínimo debe ser >= 0');
   }
 
-  // Compra
   if (!producto.compra) {
     errores.push('Los datos de compra son obligatorios');
   } else {
@@ -135,7 +131,6 @@ const validarProducto = (producto) => {
     }
   }
 
-  // Proveedor
   if (!producto.proveedor || !producto.proveedor.nombre || !producto.proveedor.telefono) {
     errores.push('El proveedor debe tener nombre y teléfono');
   }
@@ -156,7 +151,6 @@ const validarProducto = (producto) => {
   return errores;
 };
 
-// Validar un pedido completo
 const validarPedido = (pedido) => {
   const errores = [];
 
@@ -172,7 +166,6 @@ const validarPedido = (pedido) => {
   return errores;
 };
 
-// Validar una línea de pedido individual
 const validarLineaPedido = (linea, indice) => {
   const errores = [];
   if (!linea.productoId) {
